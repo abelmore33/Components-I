@@ -91,39 +91,52 @@ const data = [
 ];
 
 const articleMaker = (articleObj) =>{
-  const articleDiv = document.querySelector('.articles');
+  const articleDiv = document.createElement('div');
   const titleH2 = document.createElement('h2')
   const date = document.createElement('p');
-  const firstParagraph = document.createElement('p');
-  const secondParagraph = document.createElement('p');
-  const thirdParagraph = document.createElement('p');
+  const firstPar = document.createElement('p');
+  const secondPar= document.createElement('p');
+  const thirdPar = document.createElement('p');
   const spanElement = document.createElement('span');
-  console.log(articleDiv);
   
+  date.classList.add('date');
+  spanElement.classList.add('expandButton');
+  articleDiv.classList.add('article');
   
   articleDiv.appendChild(titleH2);
-  articleDiv.appendChild(firstParagraph);
-  articleDiv.appendChild(secondParagraph);
-  articleDiv.appendChild(thirdParagraph);
+  articleDiv.appendChild(firstPar);
+  articleDiv.appendChild(secondPar);
+  articleDiv.appendChild(thirdPar);
   articleDiv.appendChild(date);
   articleDiv.appendChild(spanElement);
 
+  titleH2.textContent = articleObj.title;
+  date.textContent = articleObj.date;
+  firstPar.textContent = articleObj.firstParagraph;
+  secondPar.textContent = articleObj.secondParagraph;
+  thirdPar.textContent = articleObj.thirdParagraph;
+  spanElement.textContent = "+";
+  
 
-  date.classList.add('date');
-  spanElement.classList.add('expandButton');
+
+
+
+  
   
   
   spanElement.addEventListener('click',(event)=>{
   articleDiv.classList.toggle('article-open');
   });
-
+  console.log(articleDiv);
   return articleDiv
   }
-
-  data.forEach(obj => {
-    document.querySelector('div.articles').appendChild(articleMaker(obj))
-
+  
+  data.forEach(article => {
+    const art = document.querySelector('div.articles');
+    art.appendChild(articleMaker(article));
   })
+  
+  
 
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
